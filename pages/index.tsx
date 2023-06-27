@@ -1,18 +1,15 @@
 import Head from 'next/head'
-import { Inter } from 'next/font/google'
 import Link from 'next/link'
 
-const inter = Inter({ subsets: ['latin'] })
+const challenges = [
+  {
+    name: "Age Calculator App",
+    challengeUrl: "/challenges/age-calculator-app",
+    frontendMentorUrl: "https://www.frontendmentor.io/challenges/age-calculator-app-dF9DFFpj-Q"
+  }
+]
 
 export default function Home() {
-
-  const challenges = [
-    {
-      name: "Age Calculator App",
-      challengeUrl: "/challenges/age-calculator-app",
-      frontendMentorUrl: "https://www.frontendmentor.io/challenges/age-calculator-app-dF9DFFpj-Q"
-    }
-  ]
 
   return (
     <>
@@ -23,34 +20,41 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="flex flex-col justify-evenly items-center min-h-screen p-24 bg-gray-800 text-gray-200">
+
         <div className='text-4xl font-bold text-center'>
           <p>Frontend Mentor Challenges</p>
           <p className='text-2xl font-normal'>using Next.js and TailwindCSS</p>
         </div>
 
         <div className="grid grid-cols-4 gap-8 text-gray-800">
-          {challenges.map(challenge => {
-            return <Link
-              href={challenge.challengeUrl}
-              className="flex flex-col w-full gap-4 bg-gray-200 rounded px-4 py-5 border border-gray-800 items-center text-left"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <h2 className="font-bold text-2xl">
-                {challenge.name}
-              </h2>
-              <Link href={challenge.frontendMentorUrl} className="group overflow-hidden inline-flex gap-1 items-center text-blue-500 hover:underline hover:text-blue-600 text-lg">
-                Visit challenge
-                <span className='transition-transform duration-200 translate-y-6 -translate-x-6 group-hover:translate-y-0 group-hover:translate-x-0'>
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
-                  </svg>
-                </span>
-              </Link>
-            </Link>
+          {challenges.map((challenge, index) => {
+            return (
+
+              <div
+                key={index}
+                className="flex flex-col w-full gap-4 bg-gray-200 rounded px-4 py-5 border border-gray-800 items-center text-left"
+              >
+
+                <Link href={challenge.challengeUrl} className="hover:underline font-bold text-3xl">
+                  {challenge.name}
+                </Link>
+
+
+                <Link href={challenge.frontendMentorUrl} className="group overflow-clip inline-flex gap-1 items-center text-blue-500 hover:underline hover:text-blue-600 text-lg">
+                  Frontend Mentor Page
+                  <span className='transition-transform duration-200 translate-y-6 -translate-x-6 group-hover:translate-y-0 group-hover:translate-x-0'>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                    </svg>
+                  </span>
+                </Link>
+
+              </div>
+
+            )
           })}
         </div>
-      </div>
+      </div >
     </>
   )
 }
